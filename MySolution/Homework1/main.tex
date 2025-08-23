@@ -1,0 +1,249 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lachaise Assignment
+% LaTeX Template
+% Version 1.0 (26/6/2018)
+%
+% This template originates from:
+% http://www.LaTeXTemplates.com
+%
+% Authors:
+% Marion Lachaise & François Févotte
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+
+%
+\usepackage{indentfirst}
+% 
+
+
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{CS223A - Introduction to Robotics - Homework \#1} % Title of the assignment
+
+\author{Yunsen Xing \\
+\texttt{Autonomous Systems and Intelligent Robots} \\
+\texttt{yunsen@kth.se}} % Author name and email address
+\date{KTH Royal Institute of Technology \&\& Aalto University --- \today}
+% \date{KTH Royal Institute of Technology --- 23$^{rd}$ August 2025}
+% University, school and/or department name(s) and a date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	Question 1
+%----------------------------------------------------------------------------------------
+
+\section*{Question 1} % Question Name
+
+\begin{enumerate}
+
+  \item First, rotate about $Y_B$ by $\theta$:
+  
+  \[
+    {}^{A}_{B}R_{1} =
+    \begin{bmatrix}
+        \cos{\theta} & 0 & \sin{\theta} \\
+        0 & 1 & 0 \\
+        -\sin{\theta} & 0 & \cos{\theta}
+    \end{bmatrix}
+  \]
+  
+  \item Then rotate about $Z_B$ by $\phi:$
+  
+  \[
+    {}^{A}_{B}R_{2} = 
+    \begin{bmatrix}
+        \cos{\phi} & \sin{\phi} & 0 \\
+        \sin{\phi} & \cos{\phi} & 0 \\
+        0 & 0 & 1
+    \end{bmatrix}
+  \]
+
+  \item Then calculate the ${}^{A}_{B}R_{1}$ $\times$ ${}^{A}_{B}R_{2}$:
+  
+  \[
+  {}^{A}_{B}R_{1} \times {}^{A}_{B}R_{2} \equiv 
+    \begin{bmatrix}
+        \cos{\theta} & 0 & \sin{\theta} \\
+        0 & 1 & 0 \\
+        -\sin{\theta} & 0 & \cos{\theta}
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+        \cos{\phi} & \sin{\phi} & 0 \\
+        \sin{\phi} & \cos{\phi} & 0 \\
+        0 & 0 & 1
+    \end{bmatrix}  
+    =
+    \begin{bmatrix}
+        \cos{\theta}\cos{\phi} + \sin{\phi} & -\cos{\theta}\sin{\phi} & \sin{\theta} \\
+        \sin{\phi} & \cos{\phi} & 0 \\
+        -\sin{\theta}\cos{\phi} & \sin{\theta}\sin{\phi} & \cos{\theta}
+    \end{bmatrix}
+  \]
+\end{enumerate}
+
+\section*{Question 2}
+\[
+    \begin{bmatrix}
+        \cos{\phi} & -\sin{\phi} & 0 \\
+        \sin{\phi} & \cos{\phi} & 0 \\
+        0 & 0 & 1
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+        \cos{\theta} & 0 & \sin{\theta} \\
+        0 & 1 & 0 \\
+        -\sin{\theta} & 0 & \cos{\theta}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \cos{\phi}\cos{\theta} & -\sin{\phi} & \cos{\phi}\sin{\theta} \\
+        \sin{\phi}\cos{\theta} & \cos{\phi} & \sin{\phi}\sin{\theta} \\
+        -\sin{\theta} & 0 & \cos{\theta}
+    \end{bmatrix}
+\]
+
+
+\section*{Question 3} % Question Name
+\[
+    {}^{B}_{A}T = 
+    \begin{bmatrix}
+        {}^{B}_{A}R & {}^{B}_{}P_{Aorg} \\
+        0 \ 0 \ 0 & 1
+    \end{bmatrix}
+\]
+\\
+\[
+    {}^{B}_{A}T^{-1}
+    =
+    {}^{A}_{B}T
+    =
+    \begin{bmatrix}
+        {}^{B}_{A}R^{T} & -{}^{B}_{A}R^{T} \cdot {}^{B}_{}P_{Aorg} \\
+        0 \ 0 \ 0 & 1 
+    \end{bmatrix}
+\]
+\subsection*{(1)}
+\begin{enumerate}
+    \item Calculate ${}^{B}_{A}R$:
+    \[
+        {}^{B}_{A}R = 
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \cos{\theta} & -\sin{\theta} \\
+            0 & \sin{\theta} & \cos{\theta}
+        \end{bmatrix}
+    \]
+    \item Calculate ${}^{B}_{A}R^{T}$:
+    \[
+        {}^{B}_{A}R = 
+        \begin{bmatrix}
+           1 & 0 & 0 \\
+           0 & \cos{\theta} & \sin{\theta} \\
+           0 & -\sin{\theta} & \cos{\theta}
+        \end{bmatrix}
+    \]
+\end{enumerate}
+
+\[
+    -{}^{B}_{A}R^{T} \cdot {}^{B}P_{Aorg}
+    =
+    \begin{bmatrix}
+        -1 & 0 & 0 \\
+        0 & -\cos{\theta} & -\sin{\theta} \\
+        0 & \sin{\theta} & -\cos{\theta}
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        2 \\
+        3
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        -1 \\
+        -2\cos{\theta} - 3 \sin{\theta} \\
+        2\sin{\theta} - 3 \cos{\theta}
+    \end{bmatrix}
+\]
+\\
+\[
+    {}^{A}_{B}T = 
+    \begin{bmatrix}
+        1 & 0 & 0 & -1 \\
+        0 & \cos{\theta} & \sin{\theta} & -2\cos{\theta} - 3 \sin{\theta} \\
+        0 & -\sin{\theta} & \cos{\theta} & 2\sin{\theta} - 3 \cos{\theta} \\
+        0 & 0 & 0 & 1
+    \end{bmatrix}
+\]
+\subsection*{(2)}
+\[
+    \theta = 45^\circ
+\]
+\[
+    {}^{A}_{B}T = 
+    \begin{bmatrix}
+        1 & 0 & 0 & -1 \\[0.3em]
+        0 & \tfrac{\sqrt{2}}{2} & \tfrac{\sqrt{2}}{2} & -2 \cdot \tfrac{\sqrt{2}}{2} - 3 \cdot \tfrac{\sqrt{2}}{2} \\[0.3em]
+        0 & -\tfrac{\sqrt{2}}{2} & \tfrac{\sqrt{2}}{2} & 2 \cdot \tfrac{\sqrt{2}}{2} - 3 \cdot \tfrac{\sqrt{2}}{2} \\[0.3em]
+        0 & 0 & 0 & 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & 0 & 0 & -1 \\[0.3em]
+        0 & \tfrac{\sqrt{2}}{2} & \tfrac{\sqrt{2}}{2} & \tfrac{5\sqrt{2}}{2} \\[0.3em]
+        0 & -\tfrac{2}{2} & \tfrac{2}{2} & -\tfrac{2}{2} \\[0.3em]
+        0 & 0 & 0 & 1
+
+    \end{bmatrix}
+\]
+\[
+    {}^{A}_{}P = 
+    \begin{bmatrix}
+        1 & 0 & 0 & -1 \\
+        0 & \tfrac{\sqrt{2}}{2} & \tfrac{\sqrt{2}}{2} & -\tfrac{5\sqrt{2}}{2} \\
+        0 & -\tfrac{\sqrt{2}}{2} & \tfrac{2}{2} & -\tfrac{2}{2} \\
+        0 & 0 & 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        4 \\
+        5 \\
+        6 \\
+        1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        3 \\
+        \tfrac{5\sqrt{2}}{2} + \tfrac{6\sqrt{2}}{2} - \tfrac{5\sqrt{2}}{2} \\
+        -\tfrac{5\sqrt{2}}{2} + \tfrac{6\sqrt{2}}{2} - \tfrac{\sqrt{2}}{2} \\
+        1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        3 \\
+        3\sqrt{2} \\
+        0 \\
+        1
+    \end{bmatrix}
+\]
+
+\end{document}
