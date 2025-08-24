@@ -246,4 +246,97 @@
     \end{bmatrix}
 \]
 
+
+\section*{Question 4} % Question Name
+\subsection*{(1)}
+\begin{enumerate}
+    \[
+        r_{1} = 
+        \begin{bmatrix}
+            \tfrac{\sqrt{2}}{2} & -\tfrac{1}{2} & -\tfrac{1}{2}
+        \end{bmatrix}
+        ^T
+    \]
+    \[
+        r_{2} = 
+        \begin{bmatrix}
+            0 & \tfrac{\sqrt{2}}{2} & -\tfrac{\sqrt{2}}{2}
+        \end{bmatrix}
+        ^T
+    \]
+    \[
+        r_{3} =
+        \begin{bmatrix}
+            \tfrac{\sqrt{2}}{2} & \tfrac{1}{2} & \tfrac{1}{2}
+        \end{bmatrix}
+        ^T
+    \]
+    \[
+        \left\|r_{1}\right\| = 
+        \sqrt{(\tfrac{\sqrt{2}}{2})^2 + (-\tfrac{1}2{})^2 + (-\tfrac{1}{2})^2} = \sqrt{\tfrac{1}{2} + \tfrac{1}{4} + \tfrac{1}{4}} = 1
+    \]
+    \[
+        \left\|r_{2}\right\| = 
+        \sqrt{0^2 + (\tfrac{\sqrt{2}}{2})^2 + (\tfrac{1}{2})^2} = \sqrt{\tfrac{1}{2} + \tfrac{1}{4} + \tfrac{1}{4}} = 1
+    \]
+    \[
+        \left\|r_{3}\right\| = 
+        \sqrt{(\tfrac{\sqrt{2}}{2})^2 + (\tfrac{1}{2})^2 + (\tfrac{1}{2})^2} = \sqrt{\tfrac{1}{2} + \tfrac{1}{4} + \tfrac{1}{4}} = 1
+    \]
+    \[
+        r_{1} \cdot r_{2} = \tfrac{\sqrt{2}}{2} \cdot 0 - \tfrac{1}{2} \cdot \tfrac{\sqrt{2}}{2} + \tfrac{1}{2} \cdot \tfrac{\sqrt{2}}{2} = -\tfrac{\sqrt{2}}{4} + \tfrac{\sqrt{2}}{4} = 0
+    \]
+    \[
+        r_{1} \cdot r_{3} = 
+        \tfrac{\sqrt{2}}{2} \cdot \tfrac{\sqrt{2}}{2} - \tfrac{1}{2} \cdot \tfrac{1}{2} - \tfrac{1}{2} \cdot \tfrac{1}{2} = \tfrac{1}{2} - \tfrac{1}{4} - \tfrac{1}{4} = 0
+    \]
+    \[
+        r_{2} \cdot r_{3} = 0 \cdot \tfrac{\sqrt{2}}{2} + \tfrac{\sqrt{2}}{2} \cdot \tfrac{1}{2} - \tfrac{\sqrt{2}}{2} \cdot \tfrac{1}{2} = 0 + \tfrac{\sqrt{2}}{4} - \tfrac{\sqrt{2}}{4} = 0
+    \]
+    so it is a rotation matrix.
+\end{enumerate}
+\subsection*{(2)}
+\begin{enumerate}
+
+    \[
+        \theta = \arccos({\tfrac{r_{11} + r_{12} + r_{33} - 1}{2}})
+        = 
+        \arccos(\tfrac{2\sqrt{2} + 1 }{4})
+    \]
+    \[
+        K = \tfrac{1}{2\sin{\theta}}
+        \begin{bmatrix}
+            r_{32} - r_{23} \\
+            r_{13} - r_{31} \\
+            r_{21} - r_{12}
+        \end{bmatrix}
+    \]
+\end{enumerate}
+
+\subsection*{(3)}
+For homework:
+\begin{enumerate}
+    \[
+        \epsilon_{4} = \tfrac{1}{2} \sqrt{1 + r_{11} + r_{22} + r_{33}} \\
+        = \tfrac{1}{2} \sqrt{1 + \tfrac{1}{\sqrt{2}} + \tfrac{1}{\sqrt{2}} + \tfrac{1}{2}}
+        = \tfrac{1}{2} \sqrt{\sqrt{2} + \tfrac{3}{2}}
+    \]
+    \[
+        \epsilon_{1} = \tfrac{r_{32} - r_{23}}{4\epsilon_{4}}
+        = \tfrac{-\tfrac{1}{\sqrt{2}} - \tfrac{1}{2}}{2\sqrt{\sqrt{2} + \tfrac{3}{2}}}
+        = \tfrac{-\sqrt{2} + 1}{4\sqrt{\sqrt{2} + \tfrac{3}{2}}}
+    \]
+    \[
+        \epsilon_{2} = \tfrac{r_{13} - r_{31}}{4\epsilon_{4}}
+        = \tfrac{\tfrac{1}{\sqrt{2}} + \tfrac{1}{2}}{4\epsilon_{4}}
+        = \tfrac{\sqrt{2} + 1}{4\sqrt{\sqrt{2} + \tfrac{3}{2}}}
+    \]
+    \[
+        \epsilon_{3} = \tfrac{r_{21} - r_{12}}{4\epsilon_{4}}
+        = \tfrac{-\tfrac{1}{2}-0}{2\sqrt{\sqrt{2} + \tfrac{3}{2}}}
+        = -\tfrac{1}{4\sqrt{\sqrt{2} + \tfrac{3}{2}}}
+    \]
+\end{enumerate}
+
+
 \end{document}
