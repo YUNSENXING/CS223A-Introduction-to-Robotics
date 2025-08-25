@@ -1,0 +1,230 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lachaise Assignment
+% LaTeX Template
+% Version 1.0 (26/6/2018)
+%
+% This template originates from:
+% http://www.LaTeXTemplates.com
+%
+% Authors:
+% Marion Lachaise & François Févotte
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+
+%
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+
+% 
+
+
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{CS223A - Introduction to Robotics - Homework \#2} % Title of the assignment
+
+\author{Yunsen Xing \\
+\texttt{Autonomous Systems and Intelligent Robots} \\
+\texttt{yunsen@kth.se}} % Author name and email address
+\date{KTH Royal Institute of Technology \&\& Aalto University --- \today}
+% \date{KTH Royal Institute of Technology --- 23$^{rd}$ August 2025}
+% University, school and/or department name(s) and a date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	Question 1
+%----------------------------------------------------------------------------------------
+
+\section*{Question 1}
+\begin{enumerate}
+    \begin{align*}
+        T_{2}' &= T_{1}T_{2}T_{1}^{-1} \\
+        T_{3}' &= T_{1}T_{2}T_{3}(T_{1}T_{2})^{-1} \\
+        T_{4}' &= T_{1}T_{2}T_{3}T_{4}(T_{1}T_{2}T_{3})^{-1}
+    \end{align*}
+    \texttt{Total displacement = }
+    \begin{align*}
+        T_{4}'T_{3}'T_{2}'T_{1} &= T_{1}T_{2}T_{3}T_{4}(T_{1}T_{2}T_{3})^{-1}T_{1}T_{2}T_{3}(T_{1}T_2)^{-1}T_{1}T_{2}T_{1}^{-1}T_{1} \\
+        &=
+        T_{1}T_{2}T_{3}T_{4}
+    \end{align*}
+\end{enumerate}
+
+\section*{Question 2}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\linewidth]{picture/Question2.png}
+    \caption{Question 2}
+    \label{fig:placeholder}
+\end{figure}
+
+\texttt{DH parameters:}
+\begin{enumerate}
+    \[
+        \begin{bmatrix}
+            \cos{\theta_{i}} & -\sin{\theta_{i}} & 0 & a_{i-1} \\
+            \sin{\theta_{i}}\cos{\alpha_{i-1}} & \cos{\theta_{i}}\cos{\alpha_{i-1}} & -\sin{\alpha_{i-1}} & -\sin{\alpha_{i-1}}d_{i} \\
+            \sin{\theta_{i}\sin{\alpha_{i-1}}} & \cos{\theta_{i}\sin{\alpha_{i-1}}} & \cos{\alpha_{i-1}} & \cos{\alpha_{i-1}}d_{i} \\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+    \]
+\end{enumerate}
+
+\begin{table}[t]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$i$ & $\alpha_{i-1}$ & $a_{i-1}$ & $d_{i}$ & $\theta_{i}$ \\ \hline
+1  & 0  & 0  & 0  & $\theta_{1}$  \\ \hline
+2  & $90^\circ$  & 0  & 0  & $\theta_{2}$  \\ \hline
+3  & $90^\circ$  & $a_{2}$  & $d_{3}$  & 0  \\ \hline
+\end{tabular}
+\caption{the answer to question 2}
+\label{tab:mytable}
+\end{table}
+
+\begin{enumerate}
+    \[
+        {}^{0}_{1}T = 
+        \begin{bmatrix}
+            \cos{\theta_{1}} & -\sin{\theta_{1}} & 0 & 0 \\
+            \sin{\theta_{1}} & \cos{\theta_{1}} & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+    \]
+    \[
+        {}^{1}_{2}T = 
+        \begin{bmatrix}
+            \cos{\theta_{2}} & -\sin_{\theta_{2}} & 0 & 0 \\
+            0 & 0 & -1 & 0 \\
+            \sin{\theta_{2}} & \cos{\theta_{2}} & 0 & 0 \\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+    \]
+    \[
+        {}^{2}_{3}T = 
+        \begin{bmatrix}
+            1 & 0 & 0 & a_{2} \\
+            0 & 0 & -1 & -d_{3} \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+    \]
+
+        \begin{align*}
+            \therefore{}^{3}_{0}T &= {}^{1}_{0}T{}^{1}_{2}T{}^{2}_{3}T \\
+            &=
+            \begin{bmatrix}
+                \cos{\theta_{1}} & -\sin{\theta_{1}} & 0 & 0 \\
+                \sin{\theta_{1}} & \cos{\theta_{1}} & 0 & 0 \\
+                0 & 0 & 1 & 0 \\
+                0 & 0 & 0 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                \cos{\theta_{2}} & -\sin{\theta_{2}} & 0 & 0 \\
+                0 & 0 & -1 & 0 \\
+                \sin{\theta_{2}} & \cos{\theta_{2}} & 0 & 0 \\
+                0 & 0 & 0 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 0 & 0 & a_{2} \\
+                0 & 0 & -1 & -d_{3} \\
+                0 & 1 & 0 & 0 \\
+                0 & 0 & 0 & 1
+            \end{bmatrix}
+            \\
+            &=
+            \begin{bmatrix}
+                \cos{\theta_{1}}\cos{\theta_{2}} & -\cos{\theta_{1}}\sin{\theta_{2}} & \sin{\theta_{1}} & 0 \\
+                \sin{\theta_{1}}\cos{\theta_{2}} & -\sin{\theta_{1}}\sin{\theta_{2}} & -\cos{\theta_{1}} & 0 \\
+                \sin{\theta_{2}} & \cos{\theta_{2}} & 0 & 0 \\
+                0 & 0 & 0 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 0 & 0 & a_{2} \\
+                0 & 0 & -1 & -d_{3} \\
+                0 & 1 & 0 & 0 \\
+                0 & 0 & 0 & 1
+            \end{bmatrix}
+            \\
+            &= 
+            \begin{bmatrix}
+                \cos{\theta_{1}}\cos{\theta_{2}} & \sin{\theta_{1}} & \cos{\theta_{1}}\sin{\theta_{2}} & a_{2}\cos{\theta_{1}}\cos{\theta_{2}} + d_{3}\cos{\theta_{1}}\sin{\theta_{2}} \\
+                \sin{\theta_{1}}\cos{\theta_{2}} & -\cos{\theta_{1}} & \sin{\theta_{1}}\sin{\theta_{2}} &  a_{2}\sin{\theta_{1}}\cos{\theta_{2}} + d_{3}\sin{\theta_{1}}\sin{\theta_2} \\
+                \sin{\theta_{2}} & 0 & -\cos{\theta_{2}} & a_{2}\sin{\theta_[2]} - d_{3}\cos{\cos{\theta_{2}}} \\
+                0 & 0 & 0 & 1
+            \end{bmatrix}
+        \end{align*}
+\end{enumerate}
+
+\section*{Another Example}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{picture/Example.png}
+    \caption{Question 3}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$i$ & $\alpha_{i-1}$ & $a_{i-1}$ & $d_{i}$ & $\theta_{i}$ \\ \hline
+1  & 0  & 0  & 0  & $\theta_{1}$  \\ \hline
+2  & $-90^\circ$  & 0  & $d_{2}$  & $\theta_{2}$  \\ \hline
+3  & $90^\circ$  & 0  & $d_{3}$  & 0  \\ \hline
+4  & 0 & 0 & 0  & 0  \\ \hline
+5  & $-90^\circ$  & 0  & 0 & $\theta_{5}$  \\ \hline
+6  & $90^\circ$  & 0  & 0  & $\theta_{6}$ \\ \hline
+\end{tabular}
+\caption{the answer to the example}
+\label{tab:mytable}
+\end{table}
+
+\section*{Question 3}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{picture/Question3.png}
+    \caption{Question 3}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+         $i$ & $\alpha_{i-1}$ & $a_{i-1}$ & $d_{i}$ & $\theta_{i}$ \\ \hline
+         1 & 0 & 0 & 0 & $\theta_{1}$ \\ \hline
+         2 & $\alpha_{1}$ & $a_{1}$ & $d_{2}$ & $\theta_{2}$ \\ \hline
+         3 & $\alpha_{2}$ & 0 & $d_{3}$ & $\theta_{3}$ \\ \hline
+         4 & $\alpha_{3}$ & 0 & $d_{4}$ & $\theta_{4}$ \\ \hline
+         5 & 0 & $a_{4}$ & 0 & $\theta_{5}$ \\ \hline
+    \end{tabular}
+    \caption{the answer to question 3}
+    \label{tab:placeholder}
+\end{table}
+
+
+\end{document}
